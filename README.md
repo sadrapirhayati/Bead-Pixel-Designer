@@ -11,6 +11,7 @@ tools:
 grid:
 ![Screenshot of Bead Pixel Designer](screenshot\bead-pixel-designer-2.png)
 
+Demo: https://sadrapirhayati.github.io/Bead-Pixel-Designer/
 
 ## Features
 
