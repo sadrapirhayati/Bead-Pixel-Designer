@@ -61,7 +61,6 @@ const drawSquareGrid = (svg: d3.Selection<SVGSVGElement, unknown, null, undefine
   for (let y = 0; y < store.grid.height; y++) {
     for (let x = 0; x < store.grid.width; x++) {
       const pos = store.grid.getCellPosition(x, y);
-      // console.log(pos)
       const adjustedPos = {
         x: pos.x +  spacing,
         y: pos.y + spacing
@@ -73,11 +72,10 @@ const drawSquareGrid = (svg: d3.Selection<SVGSVGElement, unknown, null, undefine
         .attr('height', store.cellSize.height - spacing * 2)
         .attr('stroke', showBorder ? borderColor : 'none')
         .attr('stroke-width', borderWidth)
-        // .attr('fill', 'transparent')
         .attr('fill', () => (x + y) % 2 === 0 && store.gridConfig.useAlternateColor 
           ? store.gridConfig.alternateColor 
           : 'transparent')
-        .attr('rx', cellPadding) // rounded corners for padding effect
+        .attr('rx', cellPadding)
         .attr('ry', cellPadding)
         .attr('data-x', x)
         .attr('data-y', y)
@@ -98,7 +96,7 @@ const drawHexGrid = (svg: d3.Selection<SVGSVGElement, unknown, null, undefined>)
   const borderWidth = store.gridConfig.borderWidth
   
   const cellSize = store.cellSize;
-  const offset = cellSize.width / 2; // Half-cell shift for odd rows
+  const offset = cellSize.width / 2;
 
   svg.append('rect')
     .attr('width', props.width)
@@ -107,14 +105,8 @@ const drawHexGrid = (svg: d3.Selection<SVGSVGElement, unknown, null, undefined>)
 
   for (let y = 0; y < store.grid.height; y++) {
     for (let x = 0; x < store.grid.width; x++) {
-      // Calculate position with offset for odd rows
       const posX = x * cellSize.width + (y % 2 === 1 ? offset : 0);
       const posY = y * cellSize.height;
-      const adjustedPos = {
-        x: posX + spacing,
-        y: posY + spacing
-      };
-      // Draw square
       svg.append('rect')
         .attr('x', posX)
         .attr('y', posY)
@@ -125,7 +117,7 @@ const drawHexGrid = (svg: d3.Selection<SVGSVGElement, unknown, null, undefined>)
         .attr('fill', () => (x + y) % 2 === 0 && store.gridConfig.useAlternateColor 
           ? store.gridConfig.alternateColor 
           : 'transparent')
-        .attr('rx', cellPadding) // rounded corners for padding effect
+        .attr('rx', cellPadding)
         .attr('ry', cellPadding)
         .attr('data-x', x)
         .attr('data-y', y)
@@ -146,14 +138,10 @@ const drawCells = (svg: d3.Selection<SVGSVGElement, unknown, null, undefined>) =
     
     Object.values(layer.cells).forEach(cell => {
       const pos = store.grid.getCellPosition(cell.x, cell.y);
-      // console.log(pos)
       const adjustedPos = {
         x: pos.x + spacing,
         y: pos.y + spacing
       };
-
-      // console.log(adjustedPos)
-      
       const size = {
         width: store.cellSize.width - spacing * 2,
         height: store.cellSize.height - spacing * 2,
@@ -190,7 +178,6 @@ const drawCells = (svg: d3.Selection<SVGSVGElement, unknown, null, undefined>) =
   });
 };
 
-// Watch for changes and redraw
 watch(() => [store.gridType,
             store.cellSize,
             store.gridSize.width,
@@ -212,13 +199,6 @@ watch(() => [store.gridType,
           ], () => {
   drawGrid();
 }, { deep: true });
-
-// watch(
-//   () => [store.gridSize.width, store.gridSize.height],
-//   () => {
-//     drawGrid();
-//   }
-// );
 
 onMounted(() => {
   drawGrid();
@@ -242,6 +222,5 @@ onMounted(() => {
   border: 1px solid #ddd;
   margin: 20px auto;
   padding: 20px;
-  /* overflow: hidden; */
 }
 </style>

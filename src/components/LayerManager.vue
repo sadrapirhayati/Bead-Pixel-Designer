@@ -33,7 +33,6 @@ const deleteLayer = (layerId: string, event: MouseEvent) => {
   }
 };
 
-// Drag and drop functionality
 const onDragStart = (index: number) => {
   isDragging.value = true;
   dragItemIndex.value = index;

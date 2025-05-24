@@ -99,11 +99,9 @@ export class HexGrid extends Grid {
     }
   }
 
-  // Override with hex-specific styles if needed
   getCellStyle() {
     return {
       ...super.getCellStyle(),
-      // Hex-specific styles here
     };
   }
 }

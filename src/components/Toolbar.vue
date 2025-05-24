@@ -47,7 +47,7 @@ const importProject = (event: Event) => {
       } catch (error) {
         alert('Error loading project file: ' + (error as Error).message);
       } finally {
-        input.value = ''; // Reset the input
+        input.value = '';
       }
     };
     reader.readAsText(input.files[0]);
@@ -56,7 +56,7 @@ const importProject = (event: Event) => {
 
 const triggerImport = () => {
   if (importInputRef.value) {
-    importInputRef.value.value = ''; // Clear previous selection
+    importInputRef.value.value = '';
     importInputRef.value.click();
   }
 };
@@ -131,8 +131,8 @@ const removeBackgroundImage = () => {
             <input 
               type="number" 
               v-model.number="store.gridSize.width" 
-              min="5" 
-              max="50"
+              min="2" 
+              max="100"
               class="form-input"
             >
           </label>
@@ -144,8 +144,8 @@ const removeBackgroundImage = () => {
             <input 
               type="number" 
               v-model.number="store.gridSize.height" 
-              min="5" 
-              max="50"
+              min="2" 
+              max="100"
               class="form-input"
             >
           </label>
@@ -191,7 +191,7 @@ const removeBackgroundImage = () => {
               type="number" 
               v-model.number="store.gridConfig.spacing" 
               min="0" 
-              max="10"
+              max="20"
               class="form-input"
             >
           </label>
@@ -249,7 +249,7 @@ const removeBackgroundImage = () => {
               type="number" 
               v-model.number="store.gridConfig.cellPadding" 
               min="0" 
-              max="10"
+              max="30"
               class="form-input"
             >
           </label>

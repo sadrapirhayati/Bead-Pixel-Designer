@@ -60,7 +60,6 @@ const onDrop = (event: DragEvent, targetIndex: number) => {
 
 const copyToClipboard = (color: string) => {
   navigator.clipboard.writeText(color);
-  // You might want to add a toast notification here
 };
 </script>
 

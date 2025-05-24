@@ -8,7 +8,6 @@ import { HexGrid,
             type EditorState } from '../types/editorTypes'
 
 export const useEditorStore = defineStore('editor', () => {
-  // State
   const gridType = ref<GridType>('square');
   const gridSize = ref({ width: 12, height: 5 });
   const cellSize = ref({ width: 50, height: 50 });
@@ -20,13 +19,13 @@ export const useEditorStore = defineStore('editor', () => {
   const historyIndex = ref(-1);
 
   const gridConfig = ref({
-    spacing: 0, // pixels between cells
+    spacing: 0,
     borderColor: '#cccccc',
     borderWidth: .1,
     showBorder: true,
-    cellPadding: 0, // inner padding
+    cellPadding: 0,
     gridBackground: '#ffffff',
-    gridBackgroundImage: null as string | null, // Will store base64 encoded image
+    gridBackgroundImage: null as string | null,
     gridBackgroundSize: 'cover' as 'cover' | 'contain' | 'repeat',
     showGridBackgroundImage: true,
     alternateColor: '#f5f5f5',
@@ -34,7 +33,6 @@ export const useEditorStore = defineStore('editor', () => {
     gridPattern: 'solid'
   });
 
-  // Getters
   const activeLayer = computed(() => layers.value.find(layer => layer.id === activeLayerId.value));
   const grid = computed(() => {
     return gridType.value === 'hex' 
@@ -42,7 +40,6 @@ export const useEditorStore = defineStore('editor', () => {
       : new SquareGrid(gridSize.value.width, gridSize.value.height, cellSize.value);
   });
 
-  // Actions
   function createNewLayer() {
     const newLayer: Layer = {
       id: `layer-${Date.now()}`,
@@ -56,13 +53,16 @@ export const useEditorStore = defineStore('editor', () => {
   }
 
   function deleteLayer(layerId: string) {
-
+    for (let i = 0; i < layers.value.length; i++) {
+      if (layers.value[i].id === layerId) {
+        layers.value.splice(i, 1);
+        break;
+      }
+    }
   }
 
   function setCellColor(x: number, y: number, color: string) {
     if (!activeLayer.value) return;
-    // console.log(x)
-    // console.log(y)
     const cellId = `${x},${y}`;
     activeLayer.value.cells[cellId] = { x, y, color };
     saveState();
@@ -79,9 +79,7 @@ export const useEditorStore = defineStore('editor', () => {
   }
 
   function saveState() {
-    // Truncate any future states if we're in the middle of history
     history.value = history.value.slice(0, historyIndex.value + 1);
-    
     const state: EditorState = {
       gridType: gridType.value,
       layers: JSON.parse(JSON.stringify(layers.value)),
@@ -120,12 +118,6 @@ export const useEditorStore = defineStore('editor', () => {
     saveState();
   }
 
-  // function updateGridSize(width: number, height: number) {
-  //   gridSize.value = { width, height };
-  //   saveState();
-  // }
-
-  // Initialize
   createNewLayer();
 
   return {
@@ -150,6 +142,5 @@ export const useEditorStore = defineStore('editor', () => {
     saveState,
     deleteLayer,
     setGridBackgroundImage
-    // updateGridSize
   };
 });
