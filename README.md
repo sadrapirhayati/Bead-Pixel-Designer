@@ -1,18 +1,32 @@
-# miuki-drawer
+# Bead Pixel Desginer
 
-This template should help get you started developing with Vue 3 in Vite.
+A responsive web application for creating and editing grid-based artwork with support for both square and hexagon grids, multiple layers, and advanced customization options.
 
-## Recommended IDE Setup
+![Screenshot of Grid Canvas Editor](screenshot.png) <!-- Replace with actual screenshot -->
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Type Support for `.vue` Imports in TS
+- **Grid Types**: Toggle between square and hexagon grids
+- **Layers**: Create and manage multiple layers with individual visibility control
+- **Color Palette**: Customizable color palette with hex/RGB color picker
+- **Advanced Tools**:
+  - Undo/Redo functionality
+  - Layer-wide coloring
+  - Grid customization (spacing, borders, background)
+- **Import/Export**: Save and load projects as JSON files
+- **Responsive Design**: Works on desktop and mobile devices
+- **Image Backgrounds**: Support for adding background images to your grid
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Technologies Used
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+- **Frontend**:
+  - Vue.js 3 (Composition API)
+  - TypeScript
+  - D3.js (for grid rendering)
+  - Pinia (state management)
+- **Build Tools**:
+  - Vite
+  - npm
 
 ## Project Setup
 
@@ -31,3 +45,40 @@ npm run dev
 ```sh
 npm run build
 ```
+Project Structure
+src/
+├── assets/          # Static assets
+├── components/      # Vue components
+│   ├── CanvasRenderer.vue
+│   ├── ColorPalette.vue
+│   ├── LayerManager.vue
+│   ├── Toolbar.vue
+│   └── GridSettings.vue
+├── stores/          # Pinia stores
+│   └── editorStore.ts
+├── types/           # TypeScript types
+│   └── editorTypes.ts
+├── utils/           # Utility functions
+├── App.vue          # Main application component
+└── main.ts          # Application entry point
+
+# Usage Guide
+Basic Controls
+Grid Selection: Choose between square or hexagon grid types
+
+Drawing: Click on cells to color them with the selected color
+
+Layers:
+
+Click the "+" button to add new layers
+
+Toggle visibility with the eye icon
+
+Click "Color Layer" to apply current color to all cells in the layer
+
+# Advanced Features
+Customization: Adjust grid spacing, border colors, and cell padding
+
+History: Use Undo/Redo buttons to navigate through changes
+
+Import/Export: Save your projects or load existing ones
