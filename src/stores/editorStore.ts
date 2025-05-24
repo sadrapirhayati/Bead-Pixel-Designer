@@ -10,7 +10,7 @@ import { HexGrid,
 export const useEditorStore = defineStore('editor', () => {
   // State
   const gridType = ref<GridType>('square');
-  const gridSize = ref({ width: 5, height: 5 });
+  const gridSize = ref({ width: 12, height: 5 });
   const cellSize = ref({ width: 50, height: 50 });
   const layers = ref<Layer[]>([]);
   const activeLayerId = ref<string | null>(null);
