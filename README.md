@@ -2,7 +2,8 @@
 
 A simple ethod responsive web application for creating and editing grid-based artwork with support for both square and hexagon grids, multiple layers, and advanced customization options.
 
-![Screenshot of Bead Pixel Designer](screenshot.png)
+![Screenshot of Bead Pixel Designer](screenshot\bead-pixel-designer-1.png)
+![Screenshot of Bead Pixel Designer](screenshot\bead-pixel-designer-2.png)
 
 ## Features
 
