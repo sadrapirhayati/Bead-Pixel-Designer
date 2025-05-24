@@ -2,7 +2,7 @@
 
 A responsive web application for creating and editing grid-based artwork with support for both square and hexagon grids, multiple layers, and advanced customization options.
 
-![Screenshot of Grid Canvas Editor](screenshot.png) <!-- Replace with actual screenshot -->
+![Screenshot of Bead Pixel Designer](screenshot.png)
 
 ## Features
 
