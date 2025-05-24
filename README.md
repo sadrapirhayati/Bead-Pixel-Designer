@@ -2,7 +2,11 @@
 
 A simple ethod responsive web application for creating and editing grid-based artwork with support for both square and hexagon grids, multiple layers, and advanced customization options.
 
+<<<<<<< HEAD
 tools:
+=======
+// look at screenshot folder
+>>>>>>> f691dc0e975ce879ac4eb67a2fcbb0f3e4ea81e1
 ![Screenshot of Bead Pixel Designer](screenshot\bead-pixel-designer-1.png)
 grid:
 ![Screenshot of Bead Pixel Designer](screenshot\bead-pixel-designer-2.png)
@@ -86,5 +90,8 @@ Customization: Adjust grid spacing, border colors, and cell padding
 History: Use Undo/Redo buttons to navigate through changes
 
 Import/Export: Save your projects or load existing ones
+<<<<<<< HEAD
 
 Deepseek & Sadra Pirhayati
+=======
+>>>>>>> f691dc0e975ce879ac4eb67a2fcbb0f3e4ea81e1
