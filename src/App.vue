@@ -11,7 +11,7 @@ const store = useEditorStore();
 
 <template>
   <div class="app">
-    <h1>Miyuki Pixel Designer</h1>
+    <h1>Bead Pixel Designer</h1>
     
     <Toolbar />
     <!-- <GridSettings /> -->
