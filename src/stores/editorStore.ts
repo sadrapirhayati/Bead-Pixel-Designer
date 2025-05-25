@@ -59,6 +59,7 @@ export const useEditorStore = defineStore('editor', () => {
         break;
       }
     }
+    saveState();
   }
 
   function setCellColor(x: number, y: number, color: string) {
@@ -82,6 +83,9 @@ export const useEditorStore = defineStore('editor', () => {
     history.value = history.value.slice(0, historyIndex.value + 1);
     const state: EditorState = {
       gridType: gridType.value,
+      gridSize: gridSize.value,
+      cellSize: cellSize.value,
+      gridConfig: gridConfig.value,
       layers: JSON.parse(JSON.stringify(layers.value)),
       activeLayerId: activeLayerId.value
     };
@@ -111,7 +115,6 @@ export const useEditorStore = defineStore('editor', () => {
     layers.value = JSON.parse(JSON.stringify(state.layers));
     activeLayerId.value = state.activeLayerId;
   }
-
 
   function setGridBackgroundImage(imageData: string | null) {
     gridConfig.value.gridBackgroundImage = imageData;

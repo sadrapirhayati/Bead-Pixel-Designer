@@ -198,6 +198,7 @@ watch(() => [store.gridType,
             store.gridConfig.showGridBackgroundImage
           ], () => {
   drawGrid();
+  store.saveState();
 }, { deep: true });
 
 onMounted(() => {

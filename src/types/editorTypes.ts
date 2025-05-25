@@ -20,8 +20,12 @@ export interface Layer {
 
 export interface EditorState {
   gridType: GridType;
+  gridSize: { width: number; height: number };
+  cellSize: CellSize;
+  gridConfig: any;
   layers: Layer[];
   activeLayerId: string | null;
+
 }
 
 export abstract class Grid {
