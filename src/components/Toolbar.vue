@@ -184,6 +184,7 @@ const removeBackgroundImage = () => {
       </div>
 
       <div  class="toolbar-section">
+        <h3 class="section-title">Advance Settings</h3>
         <div class="form-group">
           <label class="form-label">
             <span>Cell Spacing</span>

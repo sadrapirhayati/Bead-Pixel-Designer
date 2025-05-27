@@ -33,17 +33,17 @@ const drawGrid = () => {
   drawCells(svg);
 
   if (store.gridConfig.gridBackgroundImage) {
-      svg.append('image')
-        .attr('href', store.gridConfig.gridBackgroundImage)
-        .attr('visibility', store.gridConfig.showGridBackgroundImage? 'visible': 'hidden')
-        .attr('width', props.width)
-        .attr('height', props.height)
-        .attr('preserveAspectRatio', 'none')
-        .style('opacity', 0.3) // Adjust as needed
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('pointer-events', 'none');
-    }
+    svg.append('image')
+      .attr('href', store.gridConfig.gridBackgroundImage)
+      .attr('visibility', store.gridConfig.showGridBackgroundImage? 'visible': 'hidden')
+      .attr('width', props.width)
+      .attr('height', props.height)
+      .attr('preserveAspectRatio', 'none')
+      .style('opacity', 0.3) // Adjust as needed
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('pointer-events', 'none');
+  }
 };
 
 const drawSquareGrid = (svg: d3.Selection<SVGSVGElement, unknown, null, undefined>) => {
@@ -198,7 +198,6 @@ watch(() => [store.gridType,
             store.gridConfig.showGridBackgroundImage
           ], () => {
   drawGrid();
-  store.saveState();
 }, { deep: true });
 
 onMounted(() => {
@@ -207,13 +206,11 @@ onMounted(() => {
 </script>
 
 <template>
-<br>
-
-    <span>Show Background</span>
-    <input 
-      type="checkbox" 
-      v-model.number="store.gridConfig.showGridBackgroundImage" 
-    >
+  <span>Show Background</span>
+  <input 
+    type="checkbox" 
+    v-model.number="store.gridConfig.showGridBackgroundImage" 
+  >
 
   <div ref="canvasRef" class="canvas-container"></div>
 </template>
