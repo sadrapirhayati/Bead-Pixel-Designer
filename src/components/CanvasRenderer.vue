@@ -206,11 +206,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <span>Show Background</span>
-  <input 
-    type="checkbox" 
-    v-model.number="store.gridConfig.showGridBackgroundImage" 
-  >
+  <div class="fast_controls">
+    <span>Show Background:</span>
+    <input 
+      type="checkbox" 
+      v-model.number="store.gridConfig.showGridBackgroundImage" 
+    >
+  </div>
 
   <div ref="canvasRef" class="canvas-container"></div>
 </template>
@@ -220,5 +222,20 @@ onMounted(() => {
   border: 1px solid #ddd;
   margin: 20px auto;
   padding: 20px;
+}
+.fast_controls {
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; */
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.fast_controls > span {
+  margin-right: 5px;
+}
+.fast_controls > input {
+  transform: scale(1.5);
 }
 </style>

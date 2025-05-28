@@ -16,7 +16,7 @@ const store = useEditorStore();
     <br>
     <div class="editor-container">
       <div class="sidebar">
-        <LayerManager />
+        <!-- <LayerManager /> -->
         <br>
         <ColorPalette />
       </div>

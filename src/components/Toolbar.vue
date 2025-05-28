@@ -2,6 +2,7 @@
 import { useEditorStore } from '@/stores/editorStore';
 import { saveAs } from 'file-saver';
 import { ref } from 'vue';
+import LayerManager from './LayerManager.vue';
 
 const store = useEditorStore();
 const importInputRef = ref<HTMLInputElement>();
@@ -257,57 +258,66 @@ const removeBackgroundImage = () => {
         </div>        
       </div>
       
-      <div class="toolbar-section">
-        <h3 class="section-title">History</h3>
-        <div class="button-group">
-          <button 
-            @click="store.undo" 
-            :disabled="store.historyIndex <= 0"
-            class="toolbar-btn"
-          >
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z" />
-            </svg>
-            Undo
-          </button>
-          <button 
-            @click="store.redo" 
-            :disabled="store.historyIndex >= store.history.length - 1"
-            class="toolbar-btn"
-          >
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M18.4,10.6C16.55,9 14.15,8 11.5,8C6.85,8 2.92,11.03 1.54,15.22L3.9,16C4.95,12.81 7.95,10.5 11.5,10.5C13.45,10.5 15.23,11.22 16.62,12.38L13,16H22V7L18.4,10.6Z" />
-            </svg>
-            Redo
-          </button>
+      <div class="toolbar-column">
+        <!-- History Section -->
+        <div class="toolbar-section">
+          <h3 class="section-title">History</h3>
+          <div class="button-group">
+            <button 
+              @click="store.undo" 
+              :disabled="store.historyIndex <= 0"
+              class="toolbar-btn"
+            >
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z" />
+              </svg>
+              Undo
+            </button>
+            <button 
+              @click="store.redo" 
+              :disabled="store.historyIndex >= store.history.length - 1"
+              class="toolbar-btn"
+            >
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M18.4,10.6C16.55,9 14.15,8 11.5,8C6.85,8 2.92,11.03 1.54,15.22L3.9,16C4.95,12.81 7.95,10.5 11.5,10.5C13.45,10.5 15.23,11.22 16.62,12.38L13,16H22V7L18.4,10.6Z" />
+              </svg>
+              Redo
+            </button>
+          </div>
+        </div>
+        
+        <!-- Project Section -->
+        <div class="toolbar-section">
+          <h3 class="section-title">Project</h3>
+          <div class="button-group">
+            <button @click="exportProject" class="toolbar-btn export-btn">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
+              </svg>
+              Export
+            </button>
+            <button @click="triggerImport" class="toolbar-btn import-btn">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
+              </svg>
+              Import
+            </button>
+            <input 
+              ref="importInputRef"
+              type="file" 
+              accept=".json" 
+              @change="importProject" 
+              class="file-input"
+              style="display: none"
+            >
+          </div>
         </div>
       </div>
-      
-      <div class="toolbar-section">
-        <h3 class="section-title">Project</h3>
-        <div class="button-group">
-          <button @click="exportProject" class="toolbar-btn export-btn">
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
-            </svg>
-            Export
-          </button>
 
-          <button @click="triggerImport" class="toolbar-btn import-btn">
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
-            </svg>
-            Import
-          </button>
-          <input 
-            ref="importInputRef"
-            type="file" 
-            accept=".json" 
-            @change="importProject" 
-            class="file-input"
-            style="display: none"
-          >
-        </div>
+      <!-- Layer Manager Section -->
+      <div class="toolbar-section">
+        <h3 class="section-title">Layer Manager</h3>
+        <LayerManager />
       </div>
     </div>
   </div>
@@ -348,10 +358,16 @@ const removeBackgroundImage = () => {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-width: 200px;
+  /* min-width: 100px; */
   padding: 12px;
   background: var(--bg-color);
   border-radius: var(--radius-sm);
+
+  flex: 1;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* max-width: 200px
+  ; */
 }
 
 .section-title {
@@ -375,6 +391,7 @@ const removeBackgroundImage = () => {
   gap: 4px;
   font-size: 0.875rem;
   color: var(--text-color);
+  max-width: 200px;
 }
 
 .form-label span {
@@ -387,6 +404,7 @@ const removeBackgroundImage = () => {
   border-radius: var(--radius-sm);
   font-size: 0.875rem;
   transition: var(--transition);
+  max-width: 200px;
 }
 
 .form-input:focus, .form-select:focus {
@@ -504,6 +522,53 @@ button {
   
   .toolbar-btn {
     justify-content: center;
+  }
+}
+
+.toolbar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 200px;
+}
+
+.toolbar-section {
+  /* Modified to ensure consistent height */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-group {
+  /* Modified for column layout */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .toolbar-column {
+    flex-direction: row;
+    min-width: 100%;
+  }
+  
+  .toolbar-section {
+    flex: 1;
+  }
+  
+  .button-group {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 768px) {
+  .toolbar-column {
+    flex-direction: column;
+  }
+  
+  .button-group {
+    flex-direction: column;
   }
 }
 </style>
